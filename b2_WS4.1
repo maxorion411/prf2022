@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+int roots(double a, double b, double c, double *x1, double *x2) 
+{ int rootCount;
+  double D = b*b - 4 * a * c;  
+ if(D>0)
+ {
+ rootCount=2;
+*x1 = ( - b + sqrt( D ) ) / ( 2 * a ) ;
+*x2 = ( - b - sqrt( D ) ) / ( 2 * a ); 
+ }
+ else if(D==0)
+ {
+  rootCount=1;
+*x1 = ( - b + sqrt( D ) ) / ( 2 * a ) ;
+ }
+     
+return rootCount;    
+}
+int main()
+{
+double a,b,c,x1 ,x2,rootCount;
+char userInput='y';
+while(userInput=='y')
+{
+printf("\n1. Input the coefficients of the quadratic equation:");
+printf("\nEnter a b c :");
+scanf("%lf %lf %lf",&a,&b,&c);
+printf("\n2. Solve the equation ");
+rootCount=roots(a,b,c,&x1,&x2) ;
+if(rootCount==1){
+printf("\nThere is one real root ");
+printf("\nx0 = %lf ",x1);
+}
+else if(rootCount==2){
+printf("\nThere are 2 real roots ");
+printf("\nx1 = %lf x2 = %lf ",x1,x2);
+}
+else
+{
+printf("\nThere are no real roots ");
+printf("\nAnother run (y/n): ");
+scanf("%s",&userInput);
+}
+}
+
+return 0;
+}
