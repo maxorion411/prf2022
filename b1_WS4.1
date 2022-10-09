@@ -1,0 +1,57 @@
+#include<stdio.h>
+void input(int *num, int *den)
+{ 
+  int accepted=0;
+  while(accepted==0)
+  {
+  printf("\nEnter numerator : ");
+  scanf("%d",num);
+  if(*num!=0)
+  accepted=1;
+  }
+  accepted=0;
+  while(accepted==0)
+  {
+  printf("\nEnter denominator : ");
+  scanf("%d",den);
+  if(*den!=0)
+  accepted=1;
+  }
+}
+void display(int num, int den)
+{
+ printf(" %d/%d ",num,den);   
+}
+void simplify(int *num, int *den)
+{   int numCopy,denCopy,rem=1;
+    numCopy=*num;
+    denCopy=*den;
+    while(rem!=0){
+      rem= numCopy%denCopy;
+      numCopy=denCopy;
+      denCopy=rem;
+    }
+   *num=*num/numCopy;
+   *den=*den/numCopy;
+   if(den<0)
+   *den=-*den;
+   printf("= %d/%d ",*num,*den);  
+}
+int main()
+{ 
+char userChoice='y';
+int num,den; 
+while(userChoice=='y')
+{
+ printf("\n1.Input fraction -");
+ input(&num,&den);   
+ printf("\n2. Simplify fraction ");
+ display(num,den);
+ simplify(&num,&den);
+ printf("\nAnother run (y/n)? ");  
+ scanf("%s",&userChoice);   
+}
+
+
+return 0;    
+}
